@@ -17,7 +17,7 @@ public class NoteService {
 
     public Note getById(Long id) {
         if(!notes.containsKey(id)) {
-            throw new IllegalArgumentException("Note id does not exist");
+            throw new NoteNotFoundException();
         }
         return notes.get(id);
     }
@@ -28,7 +28,7 @@ public class NoteService {
 
     public Note add(Note note) {
         if (note.getId() != null) {
-            throw new IllegalArgumentException("Note id is already set");
+            throw new NoteIdPresentException();
         }
         note.setId(idCounter.getAndIncrement());
         notes.put(note.getId(), note);
@@ -37,17 +37,17 @@ public class NoteService {
 
     public void update(Note note) {
         if (note.getId() == null) {
-            throw new IllegalArgumentException("Note id is not set");
+            throw new NoteIdNotPresentException();
         }
         if (!notes.containsKey(note.getId())) {
-            throw new IllegalArgumentException("Note id does not exist");
+            throw new NoteNotFoundException();
         }
         notes.put(note.getId(), note);
     }
 
     public void deleteById(Long id) {
         if (!notes.containsKey(id)) {
-            throw new IllegalArgumentException("Note id does not exist");
+            throw new NoteNotFoundException();
         }
         notes.remove(id);
     }

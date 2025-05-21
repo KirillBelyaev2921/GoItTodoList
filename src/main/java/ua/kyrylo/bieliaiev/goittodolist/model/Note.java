@@ -1,13 +1,20 @@
 package ua.kyrylo.bieliaiev.goittodolist.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
-@AllArgsConstructor
+@NoArgsConstructor
+@Setter
+@Getter
 public class Note {
 
     private Long id;
     private String title;
     private String content;
+
+    public Note(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 }
