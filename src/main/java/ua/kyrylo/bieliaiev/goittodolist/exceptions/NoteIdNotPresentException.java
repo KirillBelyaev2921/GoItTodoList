@@ -1,4 +1,4 @@
-package ua.kyrylo.bieliaiev.goittodolist.service;
+package ua.kyrylo.bieliaiev.goittodolist.exceptions;
 
 public class NoteIdNotPresentException extends TodoListNoteException {
     public NoteIdNotPresentException() {

@@ -2,6 +2,9 @@ package ua.kyrylo.bieliaiev.goittodolist.service;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import ua.kyrylo.bieliaiev.goittodolist.exceptions.NoteIdNotPresentException;
+import ua.kyrylo.bieliaiev.goittodolist.exceptions.NoteIdPresentException;
+import ua.kyrylo.bieliaiev.goittodolist.exceptions.NoteNotFoundException;
 import ua.kyrylo.bieliaiev.goittodolist.model.Note;
 
 import java.util.List;
