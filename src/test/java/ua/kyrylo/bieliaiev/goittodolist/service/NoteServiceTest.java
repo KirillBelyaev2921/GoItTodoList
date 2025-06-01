@@ -1,25 +1,41 @@
 package ua.kyrylo.bieliaiev.goittodolist.service;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 import ua.kyrylo.bieliaiev.goittodolist.exceptions.NoteIdNotPresentException;
 import ua.kyrylo.bieliaiev.goittodolist.exceptions.NoteIdPresentException;
 import ua.kyrylo.bieliaiev.goittodolist.exceptions.NoteNotFoundException;
 import ua.kyrylo.bieliaiev.goittodolist.model.Note;
+import ua.kyrylo.bieliaiev.goittodolist.repository.NoteRepository;
 
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
+@SpringBootTest
 class NoteServiceTest {
     private NoteService noteService;
     private static final String TITLE = "title";
     private static final String CONTENT = "content";
     private static final String NEW_CONTENT = "new content";
 
+    @Autowired
+    private NoteRepository noteRepository;
+
     @BeforeEach
     void setUp() {
-        noteService = new NoteService();
+        noteService = new NoteService(noteRepository);
+    }
+
+    @AfterEach
+    void tearDown() {
+        noteRepository.deleteAll();
     }
 
     @Test
